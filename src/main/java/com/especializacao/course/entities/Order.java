@@ -3,6 +3,8 @@ package com.especializacao.course.entities;
 import java.io.Serializable;
 import java.time.Instant;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -18,6 +20,8 @@ public class Order implements Serializable{
 	@Id
 	@GeneratedValue
 	private Long Id;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
 	
 	@ManyToOne
@@ -28,7 +32,7 @@ public class Order implements Serializable{
 		
 	}
 	
-	public Order(Long id, Instant moment, User cliet) {
+	public Order(Long id, Instant moment, User client) {
 		this.Id = id;
 		this.moment = moment;
 		this.client = client;
